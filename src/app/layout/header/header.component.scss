@@ -1,0 +1,16 @@
+$base-color: #f6aa3b;
+$secondary-color: #3f51b5;
+
+.toolbar {
+    background: white;
+}
+
+.sub-toolbar {
+    background-color: $base-color;
+    a {
+        color: white;
+        &.selected {
+            color: black;
+        }
+    }
+}

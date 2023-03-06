@@ -1,0 +1,31 @@
+<mat-toolbar class="toolbar" [class.mat-elevation-z2]="!isActive" [class.mat-elevation-z8]="isActive">
+    <a mat-button routerLink=".">
+        <img [style.height.px]="40" src="http://www.mercuriusinc.com/images/logo.png" />
+    </a>
+    <div fxFlex="grow"></div>
+    <button mat-button [style.padding.px]="0" [style.minWidth.px]="45">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button mat-button [style.padding.px]="0" [style.minWidth.px]="45">
+        <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-button [style.padding.px]="0" [mat-menu-trigger-for]="menu" [style.minWidth.px]="130">
+        <mat-label [style.marginRight.px]="8">Mercurius Inc</mat-label>
+        <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/">Profile</button>
+        <button mat-menu-item routerLink="/">Sign Out</button>
+    </mat-menu>
+
+</mat-toolbar>
+
+<mat-card class="sub-toolbar" [style.marginTop.px]="8" [style.padding.px]="0">
+    <mat-card-content fxFlex fxLayout fxLayoutAlign="center">
+        <a mat-button class="selected" routerLink=".">Schedule</a>
+        <a mat-button routerLink=".">Leave</a>
+        <a mat-button routerLink=".">Overtime</a>
+        <a mat-button routerLink=".">Other Duties</a>
+    </mat-card-content>
+</mat-card>
