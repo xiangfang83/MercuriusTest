@@ -3,15 +3,9 @@
         display: flex;
         flex-flow: column;
         height: 100%;
-        .header {
-            height: 120px;
-        }
         .content {
             flex-grow: 1;
             padding: 6px 10px 10px;
-        }
-        .footer {
-            height: 120px;
         }
     }
 }

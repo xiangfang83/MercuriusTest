@@ -2,10 +2,15 @@ $base-color: #f6aa3b;
 $secondary-color: #3f51b5;
 
 .navbar {
-    height: 30px !important;
+    height: 25px !important;
     background-color: $base-color;
+
+    .mat-grid-tile {
+        font-size: 13px;
+    }
 }
 
 p {
     text-align: center;
+    font-size: 13px;
 }
