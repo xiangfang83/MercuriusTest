@@ -1,8 +1,22 @@
-import { Component, ViewChild, ViewEncapsulation, ElementRef, OnInit } from '@angular/core';
-import { closest, isNullOrUndefined, remove, removeClass } from '@syncfusion/ej2-base';
-import { DataManager, Query } from '@syncfusion/ej2-data';
+import { Component, Inject, ViewChild, ViewEncapsulation, ElementRef, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventSettingsModel , DayService, WeekService, WorkWeekService, MonthService, AgendaService, ScheduleComponent, CellClickEventArgs } from '@syncfusion/ej2-angular-schedule';
 import { ContextMenuComponent, MenuItemModel, BeforeOpenCloseMenuEventArgs, MenuEventArgs } from '@syncfusion/ej2-angular-navigations';
+import { FormBuilder, Validators } from '@angular/forms';
+
+export interface DialogData {
+  name: Array<string>;
+  type: Array<string>;
+  is_fmla: boolean;
+  leave_purpose: Array<string>;
+  fmla_purpose: Array<string>;
+  start_date: string;
+  end_date: string;
+  start_time: string;
+  end_time: string;
+  remarks: string;
+}
+
 @Component({
   selector: 'app-schedule',
   providers: [DayService, WeekService, WorkWeekService, MonthService, AgendaService],
@@ -13,7 +27,7 @@ import { ContextMenuComponent, MenuItemModel, BeforeOpenCloseMenuEventArgs, Menu
   
 export class ScheduleWrapperComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
   }
@@ -66,12 +80,33 @@ export class ScheduleWrapperComponent implements OnInit {
       }
       switch (selectedMenuItem) {
           case 'AnnualLeaveRequest':
-              
+              this.openDialog();
               break;
           case 'OtherRequests':
-              
               break;
       }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAnnualLeaveRequest, {
+      width: '700px',
+      data: {
+        name: ["Alex Miller", "Employee 1", "Employee 2"],
+        type: ["Annual Leave"],
+        is_fmla: false,
+        leave_purpose: ["Illness/Injury/Incapacitation Of Requesting Employee"],
+        fmla_purpose: ["Birth/Adoption/Foster Care"],
+        start_date: "02/25/1997",
+        end_date: "03/07/2023",
+        start_time: "08:00",
+        end_time: "10:00",
+        remarks: "This is test remark!!!"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   updateStatus(index: number) {
@@ -83,6 +118,44 @@ export class ScheduleWrapperComponent implements OnInit {
         nav.clicked = false
       }
     })
+  }
+
+}
+
+@Component({
+  selector: 'dialog-annual-leave-request',
+  templateUrl: './components/dialog-annual-leave-request.component.html',
+})
+export class DialogAnnualLeaveRequest {
+
+  annualLeaveRequestForm = this.fb.group({
+    name: [null, Validators.required],
+    type: [null, Validators.required],
+    is_fmla: false,
+    leave_purpose: [null, Validators.required],
+    fmla_purpose: [null, Validators.required],
+    start_date: [null, Validators.required],
+    end_date: [null, Validators.required],
+    start_time: [null, Validators.required],
+    end_time: [null, Validators.required],
+    remarks: null
+  });
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogAnnualLeaveRequest>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private fb: FormBuilder) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onTimeClick(e: Event): void {
+    e.preventDefault();
+  }
+
+  onSubmit(): void {
+    this.dialogRef.close();
   }
 
 }

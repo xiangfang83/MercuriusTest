@@ -9,6 +9,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from './material/material.module';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     MatButtonModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AmazingTimePickerModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

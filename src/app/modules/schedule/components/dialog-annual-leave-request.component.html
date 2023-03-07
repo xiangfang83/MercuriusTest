@@ -1,0 +1,127 @@
+<form [formGroup]="annualLeaveRequestForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="annual-leave-request-card">
+        <mat-card-header>
+            <mat-card-title>Leave Request</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select placeholder="Employee Name" formControlName="name">
+                            <mat-option *ngFor="let name of data.name" [value]="name">
+                                {{ name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['name'].hasError('required')">
+                            Employee Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select placeholder="Leave Type" formControlName="type">
+                            <mat-option *ngFor="let type of data.type" [value]="type">
+                                {{ type }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['type'].hasError('required')">
+                            Leave Type is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-checkbox class="full-width" formControlName="is_fmla">Is FMLA</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select placeholder="Sick Leave Purposes" formControlName="leave_purpose">
+                            <mat-option *ngFor="let leave_purpose of data.leave_purpose" [value]="leave_purpose">
+                                {{ leave_purpose }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['leave_purpose'].hasError('required')">
+                            Sick Leave Purposes is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select placeholder="FMLA Purposes" formControlName="fmla_purpose">
+                            <mat-option *ngFor="let fmla_purpose of data.fmla_purpose" [value]="fmla_purpose">
+                                {{ fmla_purpose }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['fmla_purpose'].hasError('required')">
+                            FMLA Purposes is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="start_picker" placeholder="Choose a Start Date" formControlName="start_date">
+                        <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #start_picker></mat-datepicker>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['start_date'].hasError('required')">
+                            Start Date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput placeholder="Choose a Start Time" [ngxTimepicker]="start_time_picker" formControlName="start_time">
+                        <button mat-icon-button matSuffix (click)="onTimeClick($event)">
+                            <mat-icon>access_time</mat-icon>
+                        </button>
+                        <ngx-material-timepicker #start_time_picker></ngx-material-timepicker>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['start_time'].hasError('required')">
+                            Leave Type is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="end_picker" placeholder="Choose a End Date" formControlName="end_date">
+                        <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
+                        <mat-datepicker #end_picker></mat-datepicker>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['end_date'].hasError('required')">
+                            End Date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field>
+                        <input matInput placeholder="Choose a End Time" [ngxTimepicker]="end_time_picker" formControlName="end_time">
+                        <button mat-icon-button matSuffix (click)="onTimeClick($event)">
+                            <mat-icon>access_time</mat-icon>
+                        </button>
+                        <ngx-material-timepicker #end_time_picker></ngx-material-timepicker>
+                        <mat-error *ngIf="annualLeaveRequestForm.controls['end_time'].hasError('required')">
+                            Leave Type is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <textarea matInput placeholder="Remarks"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions fxFlex fxLayout fxLayoutAlign="center">
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+            <button mat-raised-button (click)="onNoClick()">Cancel</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

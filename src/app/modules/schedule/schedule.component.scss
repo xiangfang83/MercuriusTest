@@ -1,10 +1,41 @@
 $base-color: #f6aa3b;
 $secondary-color: #3f51b5;
 
+.full-width {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    flex: 1;
+    margin-right: 20px;
+    align-items: center;
+    display: flex;
+}
+
 .mat-card {
     padding: 8px 16px;
     background-color: $base-color;
     font-weight: 500;
+}
+
+.mat-card-header-text {
+    margin: 0 !important;
+}
+
+.annual-leave-request-card {
+    background-color: transparent;
+    display: block !important;
+    &:not([class*=mat-elevation-z0]) {
+        box-shadow: none;
+    }
+    &:not([class*=mat-elevation-z0]):hover {
+        box-shadow: none !important;
+    }
 }
 
 .sidenav {
@@ -26,4 +57,12 @@ $secondary-color: #3f51b5;
         margin: 0 8px;
         background-color: lightgray;
     }
+}
+
+.timepicker-backdrop-overlay {
+    z-index: 9999 !important;
+}
+
+.timepicker-overlay {
+    z-index: 9999 !important;
 }

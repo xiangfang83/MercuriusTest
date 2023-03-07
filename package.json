@@ -25,7 +25,9 @@
     "@syncfusion/ej2-angular-buttons": "^20.4.50-ngcc",
     "@syncfusion/ej2-angular-navigations": "^20.4.52-ngcc",
     "@syncfusion/ej2-angular-schedule": "^20.4.52-ngcc",
+    "amazing-time-picker": "^1.8.0",
     "hammerjs": "^2.0.8",
+    "ngx-material-timepicker": "^5.4.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
