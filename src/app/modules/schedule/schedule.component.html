@@ -1,1 +1,27 @@
-<p>schedule works!</p>
+<mat-grid-list cols="5" rowHeight="100%">
+    <mat-grid-tile fxFlex class="sidenav" [colspan]="1">
+        <div [style.width.%]="100" [style.height.%]="100">
+            <mat-card>
+                <mat-card-content>
+                    <p>Employee</p>
+                </mat-card-content>
+            </mat-card>
+            <mat-nav-list class="navigation-list">
+                <a *ngFor="let nav of navLinks; let i = index" (click)="updateStatus(i)" mat-list-item>
+                    <span [ngClass]="{'selected':nav.clicked}" class="nav-label">{{nav.label}}</span>
+                </a>
+            </mat-nav-list>
+        </div>
+        <div class="separater"></div>
+    </mat-grid-tile>
+    <mat-grid-tile fxFlex fxLayout="column" class="sidenav-content" [colspan]="4">
+        <div [style.width.%]="100" [style.height.%]="100">
+            <mat-card>
+                <mat-card-content>
+                    <p>{{navContentTile}}</p>
+                </mat-card-content>
+            </mat-card>
+            <div class="calendar" [style.padding.px]="8"></div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

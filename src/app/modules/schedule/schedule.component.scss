@@ -1,0 +1,29 @@
+$base-color: #f6aa3b;
+$secondary-color: #3f51b5;
+
+.mat-card {
+    padding: 8px 16px;
+    background-color: $base-color;
+    font-weight: 500;
+}
+
+.sidenav {
+    .navigation-list {
+        padding: 8px;
+        .mat-list-item {
+            background: #f1f1f1;
+            height: 24px;
+            margin-top: 4px;
+
+            .selected {
+                color: $base-color;
+            }
+        }
+    }
+    .separater {
+        width: 1px;
+        height: 100%;
+        margin: 0 8px;
+        background-color: lightgray;
+    }
+}

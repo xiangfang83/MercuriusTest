@@ -9,6 +9,7 @@ $secondary-color: #3f51b5;
     background-color: $base-color;
     a {
         color: white;
+        padding: 0 48px;
         &.selected {
             color: black;
         }
