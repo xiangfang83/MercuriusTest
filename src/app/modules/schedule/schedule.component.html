@@ -21,7 +21,13 @@
                     <p>{{navContentTile}}</p>
                 </mat-card-content>
             </mat-card>
-            <div class="calendar" [style.padding.px]="8"></div>
+            <div class="calendar" [style.padding.px]="8">
+                <ejs-schedule #scheduleObj height='350px' [selectedDate]="selectedDate" [allowResizing]="allowResizing"
+                    [allowDragAndDrop]="allowDragDrop" [eventSettings]="eventSettings">
+                </ejs-schedule>
+                <ejs-contextmenu #menuObj cssClass='schedule-context-menu' target='.e-schedule' [items]='menuItems'
+                    (beforeOpen)='onContextMenuBeforeOpen($event)' (select)='onMenuItemSelect($event)'></ejs-contextmenu>
+            </div>
         </div>
     </mat-grid-tile>
 </mat-grid-list>

@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./modules/schedule/schedule.module')
-      .then(m => m.ScheduleModule)
+      .then(m => m.ScheduleWrapperModule)
   },
   {
     path: 'leave',

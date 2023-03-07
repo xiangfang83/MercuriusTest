@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScheduleComponent } from './schedule.component';
+import { ScheduleWrapperComponent } from './schedule.component';
 
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { MaterialModule } from 'src/app/material/material.module';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { ContextMenuModule } from '@syncfusion/ej2-angular-navigations';
+// import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService} from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
-  declarations: [ScheduleComponent],
+  declarations: [ScheduleWrapperComponent],
   imports: [
     CommonModule,
     ScheduleRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ScheduleModule,
+    ButtonModule,
+    ContextMenuModule
   ]
 })
-export class ScheduleModule { }
+export class ScheduleWrapperModule { }
