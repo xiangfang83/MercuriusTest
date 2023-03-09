@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScheduleWrapperComponent, DialogAnnualLeaveRequest } from './schedule.component';
+import { WatchScheduleComponent } from './components/watch-schedule/watch-schedule.component';
 
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { MaterialModule } from 'src/app/material/material.module';
@@ -12,7 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 @NgModule({
-  declarations: [ScheduleWrapperComponent, DialogAnnualLeaveRequest],
+  declarations: [ScheduleWrapperComponent, DialogAnnualLeaveRequest, WatchScheduleComponent],
   imports: [
     CommonModule,
     ScheduleRoutingModule,

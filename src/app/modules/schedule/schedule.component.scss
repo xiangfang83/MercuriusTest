@@ -27,6 +27,12 @@ $secondary-color: #3f51b5;
     margin: 0 !important;
 }
 
+.mat-button {
+    &.watch-schedule {
+        background-color: $base-color;
+    }
+}
+
 .annual-leave-request-card {
     background-color: transparent;
     display: block !important;
