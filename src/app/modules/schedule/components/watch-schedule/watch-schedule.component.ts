@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import weekly_data_json from 'src/assets/json/employee-schedule-weekly.json';
+import daily_data_json from 'src/assets/json/employee-schedule-daily.json';
 
 @Component({
   selector: 'app-watch-schedule',
@@ -10,6 +13,29 @@ export class WatchScheduleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  daily_data: object[] = daily_data_json;
+
+  drop(event: CdkDragDrop<object[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
+
+  getStatus(time: string) {
+    if (time === '2300' || time === '2330') {
+      return 1;
+    }
+    if (time === '0600' || time === '0700' || time === '0800') {
+      return 0;
+    }
+    return 2;
   }
 
 }
