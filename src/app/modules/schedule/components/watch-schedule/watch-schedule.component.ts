@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { MatRadioChange } from '@angular/material/radio';
 import weekly_data_json from 'src/assets/json/employee-schedule-weekly.json';
 import daily_data_json from 'src/assets/json/employee-schedule-daily.json';
 
@@ -10,12 +11,15 @@ import daily_data_json from 'src/assets/json/employee-schedule-daily.json';
 })
 export class WatchScheduleComponent implements OnInit {
 
-  constructor() { }
+  viewMode: string;
+  daily_data: object[] = daily_data_json;
+
+  constructor() { 
+    this.viewMode = "Daily";
+  }
 
   ngOnInit() {
   }
-
-  daily_data: object[] = daily_data_json;
 
   drop(event: CdkDragDrop<object[]>) {
     if (event.previousContainer === event.container) {
@@ -36,6 +40,10 @@ export class WatchScheduleComponent implements OnInit {
       return 0;
     }
     return 2;
+  }
+
+  radioButtonChange(data: MatRadioChange) {
+    this.viewMode = data.value;
   }
 
 }

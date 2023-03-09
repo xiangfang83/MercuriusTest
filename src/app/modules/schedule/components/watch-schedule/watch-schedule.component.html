@@ -15,10 +15,10 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-radio-group fxLayout="column" [style.marginLeft.px]="40">
-                <mat-radio-button value="Daily">
+                <mat-radio-button checked value="Daily" (change)="radioButtonChange($event)">
                     Daily
                 </mat-radio-button>
-                <mat-radio-button value="Weekly">
+                <mat-radio-button value="Weekly" (change)="radioButtonChange($event)">
                     Weekly
                 </mat-radio-button>
             </mat-radio-group>
@@ -38,30 +38,39 @@
             Reset All
         </button>
         <div fxFlex fxLayout="column" class="schedule-card" cdkDropListGroup>
-            <div class="header">
-                <p>Shifts and Workforce Count</p>
-                <p [style.marginLeft.px]="16">January 2, 2023 Monday 18/18</p>
-            </div>
-            <div fxFlex *ngFor="let data of daily_data">
-                <div fxFlex fxLayoutAlign="center center" class="s-w-count">
-                    <div class="schedule-card-info filled" [style.marginRight.px]="4" [ngClass]="{'status1':getStatus(data.time)===1, 'status2':getStatus(data.time)===2}">
-                        <p>{{data.time}}</p>
-                        <p>({{data.duration}} hrs)</p>
-                    </div>
-                    <div class="schedule-card-info" [ngClass]="{'status1':getStatus(data.time)===1, 'status2':getStatus(data.time)===2}">
-                        {{ data.empinfo.length }} / {{ data.empinfo.length }}
-                    </div>
+            <div fxLayout="column" *ngIf="viewMode==='Daily'; else elseBlock">
+                <div class="header">
+                    <p>Shifts and Workforce Count</p>
+                    <p [style.marginLeft.px]="16">January 2, 2023 Monday 18/18</p>
                 </div>
-                <div class="schedule-card-container">
-                    <div cdkDropList [cdkDropListData]="data.empinfo" class="schedule-card-item-list" cdkDropListSortingDisabled
-                        (cdkDropListDropped)="drop($event)">
-                        <div class="schedule-card-item" [ngClass]="{'status1':getStatus(data.time)===1, 'status2':getStatus(data.time)===2}" *ngFor="let item of data.empinfo" [style.marginRight.px]="6" cdkDrag>
-                            {{item.empinitials}}
-                            <mat-icon>gamepad</mat-icon>
+                <div fxFlex *ngFor="let data of daily_data">
+                    <div fxFlex fxLayoutAlign="center center" class="s-w-count">
+                        <div class="schedule-card-info filled" [style.marginRight.px]="4"
+                            [ngClass]="{'status1':getStatus(data.time)===1, 'status2':getStatus(data.time)===2}">
+                            <p>{{data.time}}</p>
+                            <p>({{data.duration}} hrs)</p>
+                        </div>
+                        <div class="schedule-card-info"
+                            [ngClass]="{'status1':getStatus(data.time)===1, 'status2':getStatus(data.time)===2}">
+                            {{ data.empinfo.length }} / {{ data.empinfo.length }}
+                        </div>
+                    </div>
+                    <div class="schedule-card-container">
+                        <div cdkDropList [cdkDropListData]="data.empinfo" class="schedule-card-item-list" cdkDropListSortingDisabled
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="schedule-card-item"
+                                [ngClass]="{'status1':getStatus(data.time)===1, 'status2':getStatus(data.time)===2}"
+                                *ngFor="let item of data.empinfo" [style.marginRight.px]="6" cdkDrag>
+                                {{item.empinitials}}
+                                <mat-icon>gamepad</mat-icon>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <ng-template #elseBlock>
+                aaaa
+            </ng-template>
         </div>
     </mat-tab>
     <mat-tab label="Posted Watch Schedule">
