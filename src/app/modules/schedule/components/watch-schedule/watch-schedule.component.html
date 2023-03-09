@@ -1,1 +1,44 @@
-<p>watch-schedule works!</p>
+<mat-tab-group>
+    <mat-tab label="Basic Watch Schedule">
+        <div fxFlex fxLayout fxLayoutAlign="none center" [style.padding.px]="20" [style.paddingBottom.px]="0">
+            <mat-form-field>
+                <mat-label>Bid Schedule</mat-label>
+                <mat-select>
+                    <mat-option value="Area4BidSchedule2023-8thApril-(6 Bid Rounds)">
+                        Area4BidSchedule2023-8thApril-(6 Bid Rounds)
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field [style.marginLeft.px]="40">
+                <input matInput [matDatepicker]="picker" placeholder="Select date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-radio-group fxLayout="column" [style.marginLeft.px]="40">
+                <mat-radio-button value="Daily">
+                    Daily
+                </mat-radio-button>
+                <mat-radio-button value="Weekly">
+                    Weekly
+                </mat-radio-button>
+            </mat-radio-group>
+            <div fxFlex="grow"></div>
+            <div fxLayout="column" fxLayoutAlign="end end" [style.minWidth.px]="200" [style.fontSize.px]="13" [style.marginLeft]="auto">
+                <div fxLayoutAlign="center">
+                    <span class="status--more"></span>
+                    <span [style.marginLeft.px]="8" [style.marginRight.px]="24">More</span>
+                    <span class="status--less"></span>
+                    <span [style.marginLeft.px]="8">Less</span>
+                </div>
+                <p>Workfoce count-Request/Available</p>
+            </div>
+        </div>
+        <button mat-button class="reset">
+            <mat-icon>refresh</mat-icon>
+            Reset All
+        </button>
+    </mat-tab>
+    <mat-tab label="Posted Watch Schedule">
+        <p>Posted Watch Schedule works!!!</p>
+    </mat-tab>
+</mat-tab-group>

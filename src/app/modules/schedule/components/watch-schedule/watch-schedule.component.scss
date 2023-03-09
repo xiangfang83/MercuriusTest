@@ -1,0 +1,27 @@
+$base-color: #f6aa3b;
+
+.status {
+    &--more {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: green;
+    }
+    &--less {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: red;
+    }
+}
+
+.mat-radio-button {
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+.mat-button {
+    &.reset {
+        color: $base-color !important;
+    }
+}
