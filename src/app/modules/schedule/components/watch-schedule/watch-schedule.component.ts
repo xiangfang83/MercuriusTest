@@ -16,6 +16,7 @@ export class WatchScheduleComponent implements OnInit {
   weekly_time_data: string[] = [];
   weekly_date_data: string[] = [];
   weekly_table_data: object[][] = [];
+  immutable_weekly_data: object[];
 
   constructor() { 
     this.viewMode = "Daily";
@@ -46,8 +47,12 @@ export class WatchScheduleComponent implements OnInit {
         });
       });
       this.weekly_table_data.push(tmpArr);
-    })
+    });
+    this.immutable_weekly_data = this.cloneDeepArray(weekly_data_json);
+  }
 
+  cloneDeepArray(obj: object[]) {
+    return JSON.parse(JSON.stringify(obj));
   }
 
   ngOnInit() {
@@ -72,6 +77,17 @@ export class WatchScheduleComponent implements OnInit {
       return 0;
     }
     return 2;
+  }
+
+  isFilled(ind1: number, ind2: number, empinitials: string) {
+    var status = true;
+    this.immutable_weekly_data.forEach((data) => {
+      if (data['time'] === this.weekly_time_data[ind1] && data['date'] === this.weekly_date_data[ind2]
+        && data['empinfo'].slice().map((emp) => emp.empinitials).indexOf(empinitials) !== -1) {
+        status = false;
+      }
+    });
+    return status;
   }
 
   radioButtonChange(data: MatRadioChange) {

@@ -96,8 +96,11 @@
                         <div cdkDropList [cdkDropListData]="weekly_table_data[ind1][ind2].empinfo" class="schedule-card-item-list" cdkDropListSortingDisabled
                             (cdkDropListDropped)="drop($event)">
                             <div class="schedule-card-item"
-                                [ngClass]="{'status1':getStatus(weekly_table_data[ind1][ind2].time)===1, 'status2':getStatus(weekly_table_data[ind1][ind2].time)===2}"
-                                *ngFor="let item of weekly_table_data[ind1][ind2].empinfo" [style.margin.px]="6" [style.marginLeft.px]="0" cdkDrag>
+                                *ngFor="let item of weekly_table_data[ind1][ind2].empinfo"
+                                [ngClass]="{'status1':getStatus(weekly_table_data[ind1][ind2].time)===1, 
+                                            'status2':getStatus(weekly_table_data[ind1][ind2].time)===2,
+                                            'filled': isFilled(ind1, ind2, item.empinitials)}"
+                                [style.margin.px]="6" [style.marginLeft.px]="0" cdkDrag>
                                 {{item.empinitials}}
                                 <mat-icon>gamepad</mat-icon>
                             </div>

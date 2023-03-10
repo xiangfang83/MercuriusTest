@@ -184,6 +184,19 @@ $color-2: #ed6000;
             border-color: $color-2 !important;
         }
     }
+
+    &.filled {
+        color: white;
+        background-color: $base-color;
+
+        &.status1 {
+            background-color: $color-1;
+        }
+
+        &.status2 {
+            background-color: $color-2;
+        }
+    }
 }
 
 .cdk-drag-preview {
