@@ -60,7 +60,7 @@
                             (cdkDropListDropped)="drop($event)">
                             <div class="schedule-card-item"
                                 [ngClass]="{'status1':getStatus(data.time)===1, 'status2':getStatus(data.time)===2}"
-                                *ngFor="let item of data.empinfo" [style.marginRight.px]="6" cdkDrag>
+                                *ngFor="let item of data.empinfo" [style.margin.px]="6" [style.marginLeft.px]="0" cdkDrag>
                                 {{item.empinitials}}
                                 <mat-icon>gamepad</mat-icon>
                             </div>
@@ -69,7 +69,41 @@
                 </div>
             </div>
             <ng-template #elseBlock>
-                aaaa
+                <p class="week-header">Mon, Jan 1, 2023 - Sun, Jan 7, 2023</p>
+                <div fxFlex fxLayout class="week-sub-header">
+                    <div class="s-w-count">
+                        <p>Shifts</p>
+                        <p>Workforce Count</p>
+                    </div>
+                    <div *ngFor="let date of weekly_date_data" class="week-date">
+                        <p>{{date}}</p>
+                        <p>18/18</p>
+                    </div>
+                </div>
+                <div fxFlex *ngFor="let time of weekly_time_data; let ind1 = index">
+                    <div fxFlex fxLayoutAlign="center center" class="s-w-count">
+                        <div class="schedule-card-info filled" [style.marginRight.px]="4"
+                            [ngClass]="{'status1':getStatus(time)===1, 'status2':getStatus(time)===2}">
+                            <p>{{time}}</p>
+                            <p>(8 hrs)</p>
+                        </div>
+                        <div class="schedule-card-info"
+                            [ngClass]="{'status1':getStatus(time)===1, 'status2':getStatus(time)===2}">
+                            {{ 13 }} / {{ 13 }}
+                        </div>
+                    </div>
+                    <div class="schedule-card-container" *ngFor="let date of weekly_date_data; let ind2 = index">
+                        <div cdkDropList [cdkDropListData]="weekly_table_data[ind1][ind2].empinfo" class="schedule-card-item-list" cdkDropListSortingDisabled
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="schedule-card-item"
+                                [ngClass]="{'status1':getStatus(weekly_table_data[ind1][ind2].time)===1, 'status2':getStatus(weekly_table_data[ind1][ind2].time)===2}"
+                                *ngFor="let item of weekly_table_data[ind1][ind2].empinfo" [style.margin.px]="6" [style.marginLeft.px]="0" cdkDrag>
+                                {{item.empinitials}}
+                                <mat-icon>gamepad</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </ng-template>
         </div>
     </mat-tab>
